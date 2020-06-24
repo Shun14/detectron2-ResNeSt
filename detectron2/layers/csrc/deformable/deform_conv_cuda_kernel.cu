@@ -485,9 +485,9 @@ void deformable_im2col(
 
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
       data_im.type(), "deformable_im2col_gpu", ([&] {
-        const scalar_t* data_im_ = data_im.data_ptr<scalar_t>();
-        const scalar_t* data_offset_ = data_offset.data_ptr<scalar_t>();
-        scalar_t* data_col_ = data_col.data_ptr<scalar_t>();
+        const scalar_t* data_im_ = data_im.data<scalar_t>();
+        const scalar_t* data_offset_ = data_offset.data<scalar_t>();
+        scalar_t* data_col_ = data_col.data<scalar_t>();
 
         deformable_im2col_gpu_kernel<<<
             GET_BLOCKS(num_kernels),
@@ -554,9 +554,9 @@ void deformable_col2im(
 
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
       data_col.type(), "deformable_col2im_gpu", ([&] {
-        const scalar_t* data_col_ = data_col.data_ptr<scalar_t>();
-        const scalar_t* data_offset_ = data_offset.data_ptr<scalar_t>();
-        scalar_t* grad_im_ = grad_im.data_ptr<scalar_t>();
+        const scalar_t* data_col_ = data_col.data<scalar_t>();
+        const scalar_t* data_offset_ = data_offset.data<scalar_t>();
+        scalar_t* grad_im_ = grad_im.data<scalar_t>();
 
         deformable_col2im_gpu_kernel<<<
             GET_BLOCKS(num_kernels),
@@ -624,10 +624,10 @@ void deformable_col2im_coord(
 
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
       data_col.type(), "deformable_col2im_coord_gpu", ([&] {
-        const scalar_t* data_col_ = data_col.data_ptr<scalar_t>();
-        const scalar_t* data_im_ = data_im.data_ptr<scalar_t>();
-        const scalar_t* data_offset_ = data_offset.data_ptr<scalar_t>();
-        scalar_t* grad_offset_ = grad_offset.data_ptr<scalar_t>();
+        const scalar_t* data_col_ = data_col.data<scalar_t>();
+        const scalar_t* data_im_ = data_im.data<scalar_t>();
+        const scalar_t* data_offset_ = data_offset.data<scalar_t>();
+        scalar_t* grad_offset_ = grad_offset.data<scalar_t>();
 
         deformable_col2im_coord_gpu_kernel<<<
             GET_BLOCKS(num_kernels),
@@ -1097,10 +1097,10 @@ void modulated_deformable_im2col_cuda(
 
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
       data_im.type(), "modulated_deformable_im2col_gpu", ([&] {
-        const scalar_t* data_im_ = data_im.data_ptr<scalar_t>();
-        const scalar_t* data_offset_ = data_offset.data_ptr<scalar_t>();
-        const scalar_t* data_mask_ = data_mask.data_ptr<scalar_t>();
-        scalar_t* data_col_ = data_col.data_ptr<scalar_t>();
+        const scalar_t* data_im_ = data_im.data<scalar_t>();
+        const scalar_t* data_offset_ = data_offset.data<scalar_t>();
+        const scalar_t* data_mask_ = data_mask.data<scalar_t>();
+        scalar_t* data_col_ = data_col.data<scalar_t>();
 
         modulated_deformable_im2col_gpu_kernel<<<
             GET_BLOCKS(num_kernels),
@@ -1167,10 +1167,10 @@ void modulated_deformable_col2im_cuda(
 
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
       data_col.type(), "modulated_deformable_col2im_gpu", ([&] {
-        const scalar_t* data_col_ = data_col.data_ptr<scalar_t>();
-        const scalar_t* data_offset_ = data_offset.data_ptr<scalar_t>();
-        const scalar_t* data_mask_ = data_mask.data_ptr<scalar_t>();
-        scalar_t* grad_im_ = grad_im.data_ptr<scalar_t>();
+        const scalar_t* data_col_ = data_col.data<scalar_t>();
+        const scalar_t* data_offset_ = data_offset.data<scalar_t>();
+        const scalar_t* data_mask_ = data_mask.data<scalar_t>();
+        scalar_t* grad_im_ = grad_im.data<scalar_t>();
 
         modulated_deformable_col2im_gpu_kernel<<<
             GET_BLOCKS(num_kernels),
@@ -1240,12 +1240,12 @@ void modulated_deformable_col2im_coord_cuda(
 
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
       data_col.type(), "modulated_deformable_col2im_coord_gpu", ([&] {
-        const scalar_t* data_col_ = data_col.data_ptr<scalar_t>();
-        const scalar_t* data_im_ = data_im.data_ptr<scalar_t>();
-        const scalar_t* data_offset_ = data_offset.data_ptr<scalar_t>();
-        const scalar_t* data_mask_ = data_mask.data_ptr<scalar_t>();
-        scalar_t* grad_offset_ = grad_offset.data_ptr<scalar_t>();
-        scalar_t* grad_mask_ = grad_mask.data_ptr<scalar_t>();
+        const scalar_t* data_col_ = data_col.data<scalar_t>();
+        const scalar_t* data_im_ = data_im.data<scalar_t>();
+        const scalar_t* data_offset_ = data_offset.data<scalar_t>();
+        const scalar_t* data_mask_ = data_mask.data<scalar_t>();
+        scalar_t* grad_offset_ = grad_offset.data<scalar_t>();
+        scalar_t* grad_mask_ = grad_mask.data<scalar_t>();
 
         modulated_deformable_col2im_coord_gpu_kernel<<<
             GET_BLOCKS(num_kernels),
