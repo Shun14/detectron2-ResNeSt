@@ -2,7 +2,7 @@
 import math
 from typing import Tuple
 import torch
-
+import pdb
 # Value for clamping large dw and dh predictions. The heuristic is that we clamp
 # such that dw and dh are no larger than what would transform a 16px box into a
 # 1000px box (based on a small anchor, 16px, and a typical image size, 1000px).
@@ -67,7 +67,8 @@ class Box2BoxTransform(object):
         dh = wh * torch.log(target_heights / src_heights)
 
         deltas = torch.stack((dx, dy, dw, dh), dim=1)
-        assert (src_widths > 0).all().item(), "Input boxes to Box2BoxTransform are not valid!"
+        #print(src_widths > 0)
+        #assert (src_widths > 0).all().item(), "Input boxes to Box2BoxTransform are not valid!"
         return deltas
 
     def apply_deltas(self, deltas, boxes):
@@ -169,9 +170,9 @@ class Box2BoxTransformRotated(object):
         da *= wa * math.pi / 180.0
 
         deltas = torch.stack((dx, dy, dw, dh, da), dim=1)
-        assert (
-            (src_widths > 0).all().item()
-        ), "Input boxes to Box2BoxTransformRotated are not valid!"
+        #assert (
+        #    (src_widths > 0).all().item()
+        #), "Input boxes to Box2BoxTransformRotated are not valid!"
         return deltas
 
     def apply_deltas(self, deltas, boxes):
