@@ -1,0 +1,1 @@
+python demo.py --config-file ../configs/COCO-PanopticSegmentation/panoptic_ResNeSt_200_FPN_syncBN_tricks_3x.yaml --input ~/dataset/icdar2015/train_images/*.jpg --output icdar15_seg  --opts MODEL.WEIGHTS ../panoptic_ResNeSt_200_FPN_syncBN_tricks_3x-43f8b731.pth

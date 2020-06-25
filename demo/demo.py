@@ -101,10 +101,13 @@ if __name__ == "__main__":
                 if os.path.isdir(args.output):
                     assert os.path.isdir(args.output), args.output
                     out_filename = os.path.join(args.output, os.path.basename(path))
+                    out_seg_filename = os.path.join(args.output, 'seg' + os.path.basename(path))
                 else:
                     assert len(args.input) == 1, "Please specify a directory with args.output"
                     out_filename = args.output
+                    out_seg_filename = 'seg' + args.output
                 visualized_output.save(out_filename)
+                cv2.imwrite(out_seg_filename.replace('jpg', 'png'), predictions['panoptic_seg'][0].cpu().numpy() )
             else:
                 cv2.namedWindow(WINDOW_NAME, cv2.WINDOW_NORMAL)
                 cv2.imshow(WINDOW_NAME, visualized_output.get_image()[:, :, ::-1])
