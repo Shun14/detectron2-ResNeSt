@@ -6,7 +6,7 @@ import os
 import time
 import cv2
 import tqdm
-
+import json
 from detectron2.config import get_cfg
 from detectron2.data.detection_utils import read_image
 from detectron2.utils.logger import setup_logger
@@ -107,6 +107,7 @@ if __name__ == "__main__":
                     out_filename = args.output
                     out_seg_filename = 'seg' + args.output
                 visualized_output.save(out_filename)
+                json.dump(predictions['panoptic_seg'][1], open(out_seg_filename.replace('jpg', 'json'), 'w'))
                 cv2.imwrite(out_seg_filename.replace('jpg', 'png'), predictions['panoptic_seg'][0].cpu().numpy() )
             else:
                 cv2.namedWindow(WINDOW_NAME, cv2.WINDOW_NORMAL)
